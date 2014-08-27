@@ -1,0 +1,29 @@
+\section{DEFINITIONS \& CONVENTIONS}
+The following definitions and naming conventions are used.
+
+\subsection{FASTQ Sequence Files}
+FASTQ formatted sequence files need not adhere to a specific naming scheme.
+FASTQ files may be in either flat or gzip compressed format.
+All FASTQ format files must have an accompanying manifest file.
+
+\subsubsection{Manifest File}
+\begin{verbatim}
+{
+  "file" : "<filename>",
+  "opts" : {
+    ["<field>" : <value>,]+
+    "paired-to" : "<paired-to>" | null,
+    "reference" : "<reference>",
+    "readgroup" : "<readgroup>"
+  },
+  "md5sum" : "<md5sum>"
+}
+\end{verbatim}
+
+\subsection{Manifest File}
+All input FASTQ format 
+FASTQ format files should adhere to the following naming scheme. \\
+\textless{readgroup}\textgreater\lbrack\_\textless{field}\textgreater\rbrack+.fq.gz \\
+
+TODO : BWA MEM arguments. \\ 
+TODO : Example execution. \\ 

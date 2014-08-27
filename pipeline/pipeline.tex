@@ -1,0 +1,42 @@
+% Definitions
+% ===========
+\newlength{\outerbordwidth}
+\setlength{\outerbordwidth}{3pt}
+\newlength{\itemseppts}
+\setlength{\itemseppts}{-3pt}
+\newlength{\vspacepts}
+\setlength{\vspacepts}{10pt}
+
+% Settings
+% ========
+
+  % Document Style
+  \documentclass[letterpaper,11pt]{article}
+  \pagestyle{empty}
+  \raggedbottom
+
+  % Packages
+  \usepackage[a4paper,total={7in,10.5in}]{geometry}
+  \usepackage[svgnames]{xcolor}
+
+% Document
+% ========
+
+\begin{document}
+  \begin{tabular}{ l r }
+    \textbf{\Large Alignment Pipeline Standard Operating Procedure} & \textbf{\today} \\
+  \end{tabular}
+
+  \vspace{\vspacepts}
+  The following is a description of the standard operating procedure for alignment
+  pipelines within the Institute for Genomics and Systems Biology at the University
+  of Chicago, White Lab. Topics covered are the preprocessing and alignment of high
+  throughput sequencing reads, duplicate identification and marking, and generation
+  of basic quality control statistics.
+  \input{sections/definitions}
+  \input{sections/preprocessing}
+  \input{sections/alignment}
+  \input{sections/duplicates}
+  \input{sections/qualitycontrol}
+
+\end{document}
