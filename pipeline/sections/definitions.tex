@@ -1,29 +1,28 @@
 \section{DEFINITIONS \& CONVENTIONS}
 The following definitions and naming conventions are used.
 
-\subsection{FASTQ Sequence Files}
-FASTQ formatted sequence files need not adhere to a specific naming scheme.
-FASTQ files may be in either flat or gzip compressed format.
-All FASTQ format files must have an accompanying manifest file.
+\subsection{Sequence Files}
+Sequence files must conform to the FASTQ format. Sequence files need not adhere to a specific naming scheme. Sequence files may be in a gzip compressed format.
 
-\subsubsection{Manifest File}
+\subsection{Manifest Files}
+All FASTQ sequence files must have an accompanying manifest file. The manifest file is used to track metadata associated with the FASTQ sequence file. This includes basic information such as target genome, readgroup identifier, and paired information, as well as optional options that may be used for custom downstream analyses.
+
+\subsubsection{Manifest Format}
+Manifest files must be in JSON format. Manifest file names must end in .manifest in order to be accepted by the system. The base structure of the manifest file must adhere to the following:
 \begin{verbatim}
 {
-  "file" : "<filename>",
-  "opts" : {
-    ["<field>" : <value>,]+
-    "paired-to" : "<paired-to>" | null,
-    "reference" : "<reference>",
-    "readgroup" : "<readgroup>"
-  },
-  "md5sum" : "<md5sum>"
+  "file" : string,
+  "name" : string,
+  ["<field>" : <value>,]+
+  "md5sum" : string
 }
 \end{verbatim}
 
-\subsection{Manifest File}
-All input FASTQ format 
-FASTQ format files should adhere to the following naming scheme. \\
-\textless{readgroup}\textgreater\lbrack\_\textless{field}\textgreater\rbrack+.fq.gz \\
+\subsubsection{Manifest Options}
+Manifest options are additional key-value pairs that may be used by downstream processes. Any additional key-value pair may be supplied as long as the key is not required. Optional keys will be ignored unless otherwise specified by the pipeline.
 
-TODO : BWA MEM arguments. \\ 
-TODO : Example execution. \\ 
+\subsection{Checksums}
+All files must have associated with them a checksum value. These are used for checking for corruption as well as accelerating reprocessing. Checksums should be done by the following:
+\begin{verbatim}
+  md5sum {file} > {file}.md5
+\end{verbatim}

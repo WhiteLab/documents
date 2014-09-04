@@ -1,0 +1,33 @@
+\subsubsection{BWA MEM - Paired End}
+The following manifest option is required. Both pairs should contain references to one another in the bwa-mem::paired-to option.
+\begin{verbatim}
+{
+  ...
+  "bwa-mem" : {
+    "name"      : regex,
+    "reference" : string,
+    "paired-to" : string | null,
+    "paired-id" : string | null,
+    "readgroup" : string
+  },
+  ...
+}
+\end{verbatim}
+The following arguments should be supplied to the BWA MEM function:\\
+Version: 0.7.10
+\begin{verbatim}
+  bwa mem -R {readgroup} {reference} {name1} {name2} | \
+  samtools view -bT {reference} - > {pair}.bam
+
+  Description of arguments:
+  -R {readgroup}  : Readgroup tag. Taken from the bwa-mem::readgroup manifest option.
+  {reference}     : Reference for alignment.
+                    Derived from the bwa-mem::reference manifest option.
+  {name1}         : Pair 1 of paired-end reads.
+                    Derived from the bwa-mem::name manifest option.
+  {name2}         : Pair 2 of paired-end reads.
+                    Derived from the bwa-mem::name manifest option of pair manifest.
+  {pair}          : Base name for output.
+                    Taken from the bwa-mem::paired-id manifest option.
+                    Must match with pair manifest.
+\end{verbatim}

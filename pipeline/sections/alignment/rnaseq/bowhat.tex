@@ -1,0 +1,18 @@
+\subsubsection{Manifest Options}
+The following manifest option is required. If paired sequencing is performed, the pairs should contain references to one another in the bowhat::paired-to option.
+\begin{verbatim}
+{
+  ...
+  "bowtie" : {
+    "name"      : regex,
+    "reference" : string,
+    "paired-to" : string | null,
+    "paired-id" : string | null,
+    "readgroup" : string
+  },
+  "tophat" : {
+  }
+  ...
+}
+\end{verbatim}
+TODO : Consult with Chai.

@@ -1,0 +1,26 @@
+\subsubsection{BWA MEM - Single End}
+The following manifest option is required.
+\begin{verbatim}
+{
+  ...
+  "bwa-mem" : {
+    "name"      : regex,
+    "reference" : string,
+    "readgroup" : string
+  },
+  ...
+}
+\end{verbatim}
+The following arguments should be supplied to the BWA MEM function:\\
+Version: 0.7.10
+\begin{verbatim}
+  bwa mem -R {readgroup} {reference} {name} | \
+  samtools view -bT {reference} - > {name}.bam
+
+  Description of arguments:
+  -R {readgroup}  : Readgroup tag. Taken from the bwa-mem::readgroup manifest option.
+  {reference}     : Reference for alignment.
+                    Derived from the bwa-mem::reference manifest option.
+  {name}          : Base name for output.
+                    Derived from the bwa-mem::name manifest option.
+\end{verbatim}

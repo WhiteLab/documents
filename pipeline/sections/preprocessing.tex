@@ -1,1 +1,31 @@
 \section{PREPROCESSING}
+Preprocessing of sequence files should adhere to the following.
+
+\subsection{Adapter Clipping}
+Sequence files must have adapters clipped. Clipping should be performed using the FASTX Toolkit, fastx\_clipper function.
+
+\subsubsection{Manifest Options}
+The following manifest option is required. The adapter sequence is specific to the associated sequence file. If paired sequencing is performed, the pairs should contain their own adapter sequences.
+\begin{verbatim}
+{
+  ...
+  "fastx_clipper" : {
+    "adapter" : string
+  }
+  ...
+}
+\end{verbatim}
+
+\subsubsection{FASTX fastx\_clipper}
+Version: 0.0.6 \\\\
+The following arguments should be supplied to the FASTX Toolkit fastx\_clipper function:
+\begin{verbatim}
+  fastx_clipper -a {adapter} -l 0 -i {filename} -o {unique-id}.clipped
+
+  Description of arguments:
+  -a {adapter}      : Target adapter sequence for trimming.
+                      Taken from the fastx_clipper::adapter manifest option.
+  -l 0              : Keep all reads, even adapter-only.
+  -i {file}         : Input file. Derived from the file manifest option.
+  -o {name}.clipped : Output file. Derived from the name manifest option.
+\end{verbatim}
